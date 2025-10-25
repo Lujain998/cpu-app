@@ -22,7 +22,7 @@ DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/cpu_db?schema=public"
 
 #### Run migrations and seed sockets:
 ```bash
-npx prisma migrate dev Cpu init
+npx prisma migrate dev --name init
 npx prisma db seed
 ```
 #### Start the backend:
