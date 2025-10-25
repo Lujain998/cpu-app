@@ -1,0 +1,13 @@
+html, body, #root {
+  height: 100%;
+}
+.app-container {
+  height: 100%;
+   grid-template-columns: 1fr;
+}
+body {
+  margin: 20px;
+  background-color: lightgrey;
+}
+
+
