@@ -1,6 +1,6 @@
 import * as React from 'react';
 import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/DeleteOutlined'
+import DeleteIcon from '@mui/icons-material/DeleteOutlined';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
@@ -38,7 +38,6 @@ interface CpuTableProps {
   cpus: Cpu[];
   sockets: Socket[];
   onEditCpu: (cpu: Cpu) => void;
-   onSelectCpu: (cpu: Cpu) => void;
   onDeleteCpu: (event: React.MouseEvent, id: number) => void;
 }
 
@@ -66,7 +65,14 @@ const CpuTable = ({ cpus, sockets, onDeleteCpu, onEditCpu }: CpuTableProps) => {
                 </TableHead>
 
                 <TableBody>
-                    {cpus.map((cpu) => {
+                  {cpus.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={5} align="center">
+                        No CPUs found. Please add a new one.
+                      </TableCell>
+                    </TableRow>
+                  ) : (
+                    cpus.map((cpu: Cpu) => {
                         const open = openRowId === cpu.id;
                         const socket = socketById.get(cpu.socket_id);
                         return (
@@ -100,7 +106,7 @@ const CpuTable = ({ cpus, sockets, onDeleteCpu, onEditCpu }: CpuTableProps) => {
                             </TableRow>
 
                             <TableRow>
-                                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={7}>
+                                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={5}>
                                 <Collapse in={open} timeout="auto" unmountOnExit>
                                     <Box sx={{ margin: 1 }}>
                                     <Typography variant="h6" gutterBottom component="div">
@@ -138,8 +144,9 @@ const CpuTable = ({ cpus, sockets, onDeleteCpu, onEditCpu }: CpuTableProps) => {
                             </TableRow>
                         
     </React.Fragment>
-  );
-          })}
+);
+                  })
+                )}
         </TableBody>
       </Table>
     </TableContainer>
