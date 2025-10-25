@@ -1,0 +1,28 @@
+{
+  "name": "cpu-app-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --watch src --ext ts,tsx --exec ts-node src/index.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "prisma": {
+    "seed": "ts-node prisma/seeds.ts"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.9.1",
+    "nodemon": "^3.1.10",
+    "prisma": "^6.17.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.17.1",
+    "cors": "^2.8.5",
+    "express": "^5.1.0"
+  }
+}

@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model cpus {
+  id         Int      @id @default(autoincrement())
+  brand      String   @db.VarChar(250)
+  model      String   @db.VarChar(250)
+  clockspeed Decimal? @db.Decimal(5, 2)
+  cores      Int?
+  threads    Int?
+  tdp        Int?
+  price_eur  Decimal? @db.Decimal(10, 2)
+  socket_id  Int?
+  sockets    sockets? @relation(fields: [socket_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_socket")
+
+  @@index([socket_id], map: "fki_fk_socket")
+}
+
+model sockets {
+  id   Int    @id @default(autoincrement())
+  code String @unique(map: "unique_code") @db.VarChar(50)
+  name String @db.VarChar(100)
+  cpus cpus[]
+}
