@@ -12,30 +12,31 @@ A simple full-stack web app for managing CPUs and their sockets.
 ## Run Instructions
 
 ### Backend
-
+```bash
 cd cpu-app-server
 npm install
-
+```
 #### Create a .env file:
 
 DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/cpu_db?schema=public"
 
 #### Run migrations and seed sockets:
-
+```bash
 npx prisma migrate dev Cpu init
 npx prisma db seed
-
+```
 #### Start the backend:
-
+```bash
 npm start
-
+```
 Runs on http://localhost:5000
 
 ### Frontend
+```bash
 cd ../cpu-app-ui
 npm install
 npm start
-
+```
 Runs on http://localhost:3000
 
 
