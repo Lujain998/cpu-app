@@ -237,13 +237,13 @@ const handleUpdateCpu = async() => {
      <CpuTable
          cpus={cpus}
          sockets={sockets}
-         onSelectCpu={handleCpuClick}
          onEditCpu={handleEditCpu}
          onDeleteCpu={deleteCpu}
        />
       </div>
 
     <CpuDrawer
+      key={`${drawerMode}-${selectedCpu?.id ?? 'new'}`}
       open={isDrawerOpen}
       mode={drawerMode}
       cpu={selectedCpu}
@@ -254,12 +254,12 @@ const handleUpdateCpu = async() => {
       onChange={(field, value) => {
         if (field === "brand") setBrand(String(value));
         if (field === "model") setModel(String(value));
-        if (field === "clockspeed") setClockSpeed(Number(value));
-        if (field === "cores") setCores(Number(value));
-        if (field === "threads") setThreads(Number(value));
-        if (field === "tdp") setTdp(Number(value));
-        if (field === "price_eur") setPrice(Number(value));
-        if (field === "socket_id") setSocket(Number(value));
+        if (field === "clockspeed") setClockSpeed(value === "" ? "" : Number(value));
+        if (field === "cores") setCores(value === "" ? "" : Number(value));
+        if (field === "threads") setThreads(value === "" ? "" : Number(value));
+        if (field === "tdp") setTdp(value === "" ? "" : Number(value));
+        if (field === "price_eur") setPrice(value === "" ? "" : Number(value));
+        if (field === "socket_id") setSocket(value === "" ? 0 : Number(value));
         setSelectedCpu(prev => (prev ? { ...prev, [field]: value as any } : prev));
       }}
     />
